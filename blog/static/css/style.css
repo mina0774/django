@@ -75,14 +75,15 @@ h3 {
   border-left: 10px solid #FFCD4A;
   background: #003366;
 }
+
 #grid .accordionTitle:hover{
   background: #F3F3F3;
 }
 
-/*
+
 #grid ul ul {
  display: none;
-}*/
+}
 
 @media(max-width:800px) {
   #grid {
