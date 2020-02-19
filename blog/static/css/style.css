@@ -1,0 +1,96 @@
+body {
+  margin: 0
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.github_image {
+  width: 200px;
+  height: auto;
+  align-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+img {
+  width: 350px;
+  height: auto;
+}
+
+#grid ul {
+  font-family: 'Tomorrow', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  width: 330px;
+  padding-inline-start:0px;
+  margin: 0;
+  list-style: none;
+}
+
+.accordionTitle{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  background-color: white;
+}
+
+#article {
+  font-family: 'Nanum Gothic', sans-serif;
+  padding-left: 15px;
+  background-color: #f3f3f3;
+}
+
+/* 서브메뉴 스타일 */
+#grid ul ul li a {
+ color: black;
+ text-decoration: none;
+ font-size: 11px;
+ line-height: 24px;
+ display: block;
+ -webkit-transition: all 0.15s;
+ -moz-transition: all 0.15s;
+ -o-transition: all 0.15s;
+ -ms-transition: all 0.15s;
+ transition: all 0.15s;
+}
+#grid ul ul li a:hover {
+  color: white;
+  border-left: 10px solid #FFCD4A;
+  background: #003366;
+}
+#grid .accordionTitle:hover{
+  background: #F3F3F3;
+}
+
+/*
+#grid ul ul {
+ display: none;
+}*/
+
+@media(max-width:800px) {
+  #grid {
+    display: block;
+  }
+
+  #grid ul.menu {
+    border-left: none;
+    border-right: none;
+  }
+}
