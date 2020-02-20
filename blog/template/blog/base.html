@@ -6,54 +6,49 @@
   <title>포트폴리오</title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Tomorrow&display=swap&subset=korean" >
-  <script type="text/text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <!--<script type="text/text/javascript" src="{% static 'js/menu_slide.js' %}"</script> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Tomorrow&display=swap&subset=korean">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/menu_slide.js' %}"></script>
 </head>
 
 <body>
-<div id="grid">
-  <ul>
-    <img src="{% static 'img/logo.png' %}"><br><br>
-    <li class="item">
-      <h3 class="accordionTitle"><span></span> Profile</h3>
-      <ul>
-        <li class="accordionMenu"><a href="post_list.html"> Skill </a></li>
-      </ul>
-    </li>
-    <li class="item">
-      <h3 class="accordionTitle"><span></span> Activity</h3>
-      <ul>
-        <li class="accordionMenu"><a href="uci.html"> UCI Undergraduate Researcher</a></li>
-        <li class="accordionMenu"><a href="helpdesk.html"> Coding HelpDesk</a></li>
-        <li class="accordionMenu"><a href="internship.html"> Heronation InternShip </a></li>
-      </ul>
-    </li>
-    <li class="item">
-      <h3 class="accordionTitle"><span></span> Project</h3>
-      <ul>
-        <li class="accordionMenu"><a href="face_recognition.html"> Face Recognition</a></li>
-        <li class="accordionMenu"><a href="muping.html"> Mu:Ping App</a></li>
-        <li class="accordionMenu"><a href="angbob.html"> Ang-Bob App</a></li>
-        <li class="accordionMenu"><a href="flex_bison.html"> Flex-Bison Interpreter</a></li>
-        <li class="accordionMenu"><a href="z-shop.html"> Z-shop App</a></li>
-      </ul>
-    </li>
-  </ul>
+  <div id="grid">
+    <ul>
+      <img src="{% static 'img/logo.png' %}"><br><br>
+      <li class="item">
+        <h3 class="accordionTitle"><span></span> Profile</h3>
+        <ul>
+          {% for post in profile %}
+              <li class="accordionMenu"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.index_title }}</a></li>
+              {% endfor %}
+        </ul>
+      </li>
+      <li class="item">
+        <h3 class="accordionTitle"><span></span> Activity</h3>
+        <ul>
+          {% for post in activity %}
+              <li class="accordionMenu"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.index_title }}</a></li>
+              {% endfor %}
+        </ul>
+      </li>
+      <li class="item">
+        <h3 class="accordionTitle"><span></span> Project</h3>
+        <ul>
+          {% for post in project %}
+              <li class="accordionMenu"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.index_title }}</a></li>
+              {% endfor %}
+        </ul>
+      </li>
+    </ul>
 
-  <div id="article">
-    {% for post in posts %}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-    {% endfor %}
+    <div id="article">
+        {% block content %}
+        {% endblock %}
+    </div>
   </div>
-</div>
 
 
-<div id="disqus_thread"></div>
+  <div id="disqus_thread"></div>
 <script>
   /**
    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
