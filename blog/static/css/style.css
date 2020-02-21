@@ -8,9 +8,9 @@ a {
 }
 
 .github_image {
-  width: 200px;
+  width: 180px;
   height: auto;
-  align-content: center;
+  margin-left: 70px;
 }
 
 h1 {
@@ -22,14 +22,30 @@ img {
   height: auto;
 }
 
-#grid ul {
+.title {
+  font-family: 'Tomorrow', sans-serif;
+  font-weight: bold;
+}
+
+#grid .accordion {
   font-family: 'Tomorrow', sans-serif;
   font-weight: bold;
   text-align: center;
   width: 300px;
-  padding-inline-start:0px;
+  padding-inline-start: 0px;
   margin: 0;
   list-style: none;
+}
+
+#grid ul {
+  font-family: 'Tomorrow', sans-serif;
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+.plus {
+  width: 60px;
+  margin: 10px;
 }
 
 .accordionTitle{

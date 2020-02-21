@@ -1,13 +1,36 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<div class="post">
-    {% if post.published_date %}
-        <div class="date">
-            {{ post.published_date }}
-        </div>
-    {% endif %}
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.text|linebreaksbr }}</p>
-</div>
+<div align=center>
+  <a href="https://www.github.com/mina0774" target="_blank" title="github profile">
+    <img src="https://avatars1.githubusercontent.com/u/48617981?s=460&v=4" class="github_image"> </a>
+  <div style="font-family: 'Tomorrow',sans-serif; font-size:12px">▲ My github ▲</div>
+  <h4 class="title"><strong>Identity</strong></h4>
+  <ul style="font-size:13px">
+    <li>1998 03 06</li>
+    <li>Female</li>
+    <li>Korean</li>
+  </ul>
+  <h4 class="title"><strong>Education</strong></h4>
+  <ul style="font-size:13px">
+    <li>Majoring CSE in Chung-Ang University</li>
+  </ul>
+  <h4 class="title"><strong>Activity</strong></h4>
+  <ul style="font-size:13px">
+    <li>UCI Undergraduate Researcher</li>
+    <li>Coding HelpDesk</li>
+    <li>Heronation InternShip</li>
+    </ul>
+    <h4 class="title"><strong>Project</strong></h4>
+    <ul style="font-size:13px">
+      <li>Face Recognition</li>
+      <li>Mu:Ping App</li>
+      <li>Ang-Bob App</li>
+      <li>Flex-Bison Interpreter</li>
+      <li>Z-shop App</li>
+      <li>My Portfolio Web</li>
+    </ul>
+    <br>
+    </div>
+
 {% endblock %}
