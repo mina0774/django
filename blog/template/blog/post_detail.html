@@ -1,16 +1,22 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
-    <div class="post">
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-        {% endif %}
-        {% if user.is_authenticated %}
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><img src="{% static 'img/edit_1.png' %}" style="width:50px; magin:5px;"></a>
-        {% endif %}
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
+<div class="post">
+  {% if post.published_date %}
+  <div class="date">
+    {{ post.published_date }}
+  </div>
+  {% endif %}
+
+  <h1>{{ post.title }}</h1>
+  {% if user.is_authenticated %}
+  <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><img src="{% static 'img/edit_1.png' %}" style="width:48px;"></a>
+
+  <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><img src="{% static 'img/delete.png' %}" style="width:45px;"></a>
+
+
+  <br>
+  {% endif %}
+  <p>{{ post.text|linebreaksbr }}</p>
+</div>
 {% endblock %}

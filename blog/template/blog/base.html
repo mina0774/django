@@ -12,9 +12,14 @@
 </head>
 
 <body>
+  <div class="top" align="center">
+    <a href="{% url 'post_list' %}"><img src="{% static 'img/logo.png' %}" style="border-bottom:10px;"></a>
+    {% if user.is_authenticated %}
+    <!--<img class="plus" src="{% static 'img/plus.png' %}" > -->
+    {% endif %}
+  </div>
   <div id="grid">
     <ul class="accordion">
-      <a href="{% url 'post_list' %}"><img src="{% static 'img/logo.png' %}"></a><br><br>
       <li class="item">
         <h3 class="accordionTitle"><span></span> Profile</h3>
         <ul>
@@ -42,10 +47,11 @@
     </ul>
 
     <div id="article">
-      {% if user.is_authenticated %}
-        <a href="{% url 'post_new' %}" class="top-menu"><img class="plus" src="{% static 'img/plus.png' %}" align=right></a>
-        {% endif %}
-        {% block content %}
+      <div align="right">
+        <a href="{% url 'post_new' %}" class="top-menu" align=right><img src="{% static 'img/plus.png' %}" style="margin:5px;width:44px;"></a>
+      </div>
+
+      {% block content %}
         {% endblock %}
     </div>
   </div>

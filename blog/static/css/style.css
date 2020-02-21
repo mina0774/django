@@ -10,7 +10,6 @@ a {
 .github_image {
   width: 180px;
   height: auto;
-  margin-left: 70px;
 }
 
 h1 {
@@ -18,7 +17,7 @@ h1 {
 }
 
 img {
-  width: 300px;
+  width: 330px;
   height: auto;
 }
 
@@ -27,11 +26,15 @@ img {
   font-weight: bold;
 }
 
+.top{
+  border: 15px #FFCD4A solid;
+}
+
 #grid .accordion {
   font-family: 'Tomorrow', sans-serif;
   font-weight: bold;
   text-align: center;
-  width: 300px;
+  width: 240px;
   padding-inline-start: 0px;
   margin: 0;
   list-style: none;
@@ -44,8 +47,9 @@ img {
 }
 
 .plus {
-  width: 45px;
-  margin: 15px;
+  width: 47px;
+  margin-right: 10px;
+  margin-top: 45px;
 }
 
 .accordionTitle{
@@ -63,7 +67,7 @@ h3 {
 
 #grid {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 240px 1fr;
   background-color: white;
 }
 
