@@ -4,6 +4,7 @@ from .models import Post
 from .forms import PostForm
 from django.shortcuts import redirect
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -12,6 +13,7 @@ def post_list(request):
     project=Post.objects.filter(parent_title__contains="Project",published_date__lte=timezone.now())
     return render(request, 'blog/post_list.html', {'posts': posts,'profile':profile,"activity":activity,"project":project})
 
+@login_required
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     profile=Post.objects.filter(parent_title__contains="Profile",published_date__lte=timezone.now())
@@ -19,6 +21,7 @@ def post_detail(request, pk):
     project=Post.objects.filter(parent_title__contains="Project",published_date__lte=timezone.now())
     return render(request, 'blog/post_detail.html', {'post': post,'profile':profile,"activity":activity,"project":project})
 
+@login_required
 def post_new(request):
     profile=Post.objects.filter(parent_title__contains="Profile",published_date__lte=timezone.now())
     activity=Post.objects.filter(parent_title__contains="Activity",published_date__lte=timezone.now())
@@ -35,6 +38,7 @@ def post_new(request):
         form=PostForm()
     return render(request,'blog/post_edit.html',{'form':form,'profile':profile,"activity":activity,"project":project})
 
+@login_required
 def post_edit(request, pk):
     profile=Post.objects.filter(parent_title__contains="Profile",published_date__lte=timezone.now())
     activity=Post.objects.filter(parent_title__contains="Activity",published_date__lte=timezone.now())
@@ -52,6 +56,7 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form,'profile':profile,"activity":activity,"project":project})
 
+@login_required
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
