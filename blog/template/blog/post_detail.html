@@ -11,10 +11,22 @@
   <h1>{{ post.title }}</h1>
   {% if user.is_authenticated %}
   <div align="right">
-  <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><img src="{% static 'img/edit_1.png' %}" style="width:40px;"></a>
-  <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><img src="{% static 'img/delete.png' %}" style="width:37px;"></a>
+    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><img src="{% static 'img/edit_1.png' %}" style="width:40px;"></a>
+    <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><img src="{% static 'img/delete.png' %}" style="width:37px;"></a>
   </div>
   {% endif %}
   <p>{{ post.text|linebreaksbr }}</p>
+  <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
 </div>
+
+<hr>
+{% for comment in post.comments.all %}
+<div class="comment" style="margin: 10px 0px 10px;">
+  <div class+"date">{{ comment.created_date }}</div>
+  <strong>{{ comment.author }}</strong>
+  <div> {{ comment.text|linebreaks }} </div>
+</div>
+{% empty %}
+<p>No comments here yet :</p>
+{% endfor %}
 {% endblock %}
