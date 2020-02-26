@@ -24,6 +24,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
+
 
 class Comment(models.Model):
     post=models.ForeignKey('blog.Post',on_delete=models.CASCADE,related_name='comments') # related_name은 post 모델에서 댓글에 접근할 수 있게 함. ex> post.comments.all()

@@ -16,18 +16,26 @@
   </div>
   {% endif %}
   <p>{{ post.text|linebreaksbr }}</p>
-  <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+  <a href="{% url 'post_detail' pk=post.pk %}" style=" font-family: 'Tomorrow', sans-serif;">Comments: {{ post.approved_comments.count }}</a>
 </div>
 
 <hr>
-<a class='btn btn-default' href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+<a class='btn btn-default' href="{% url 'add_comment_to_post' pk=post.pk %}" style=" font-family: 'Tomorrow', sans-serif; border:2px solid black; padding:3px; font-weight:bold;">Add comment</a>
 {% for comment in post.comments.all %}
-<div class="comment" style="margin: 10px 0px 10px;">
-  <div class+"date">{{ comment.created_date }}</div>
+{% if user.is_authenticated or comment.approved_comment %}
+<div class="comment" style="font-family: 'Tomorrow', sans-serif; border-bottom:1px solid #bcbcbc; margin-top:5px; padding:5px; color:#5d5d5d;">
+  <div class="date">
+    {{ comment.created_date }}
+    {% if not comment.approved_comment %}
+    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}" style="color:#ffa500; border:1px solid #ffa500; font-size:12px; padding:3px;">삭제</a>
+    <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk%}" style="color:#ffa500; border:1px solid #ffa500; font-size:12px; padding:3px;">승인</a>
+    {% endif %}
+  </div>
   <strong>{{ comment.author }}</strong>
-  <div> {{ comment.text|linebreaks }} </div>
+  <div>{{ comment.text|linebreaks }}</div>
 </div>
+{% endif %}
 {% empty %}
-<p>No comments here yet :</p>
+<p style=" font-family: 'Tomorrow', sans-serif;">No comments here yet :(</p>
 {% endfor %}
 {% endblock %}
