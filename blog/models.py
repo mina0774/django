@@ -2,9 +2,17 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+class Menu(models.Model):
+    parent_title_choices=(('Profile','Profile'),('Activity','Activity'),('Project','Project'))
+    parent_title=models.CharField(max_length=30,choices=parent_title_choices,default='Profile')
+    index_title_choices=(('Profile',(('Skill','Skill'),)),('Activity',(('UCI Undergraduate Researcher','UCI Undergraduate Researcher'),('Coding HelpDesk','Coding HelpDesk'),('Heronation InternShip','Heronation InternShip'))),('Project',(('Face Recogntion','Face Recognition'),('Mu:Ping App','Mu:Ping App'),('Ang-Bob App','Ang-Bob App'),('Flex-Bison Interpreter','Flex-Bison Interpreter'),('Z-shop App','Z-shop App'),)))
+    index_title=models.CharField(max_length=30,choices=index_title_choices,default='Skill')
+
+
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#    menu=models.ForeignKey('blog.menu',on_delete=models.CASCADE,related_name='menu')
     parent_title_choices=(('Profile','Profile'),('Activity','Activity'),('Project','Project'))
     parent_title=models.CharField(max_length=30,choices=parent_title_choices,default='Profile')
     index_title_choices=(('Profile',(('Skill','Skill'),)),('Activity',(('UCI Undergraduate Researcher','UCI Undergraduate Researcher'),('Coding HelpDesk','Coding HelpDesk'),('Heronation InternShip','Heronation InternShip'))),('Project',(('Face Recogntion','Face Recognition'),('Mu:Ping App','Mu:Ping App'),('Ang-Bob App','Ang-Bob App'),('Flex-Bison Interpreter','Flex-Bison Interpreter'),('Z-shop App','Z-shop App'),)))
