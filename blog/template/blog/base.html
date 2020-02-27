@@ -35,6 +35,9 @@
       <li class="item">
         <h3 class="accordionTitle"><span></span> Profile</h3>
         <ul>
+          {% for post in menu %}
+          <li class="accordionMenu"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.index_title }}</a></li>
+          {% endfor %}
           {% for post in profile %}
           <li class="accordionMenu"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.index_title }}</a></li>
           {% endfor %}
