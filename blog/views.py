@@ -7,17 +7,19 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 def post_list(request):
-    menu= Menu.objects.filter(parent_title__contains="Activity")
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    profile=Post.objects.filter(parent_title__contains="Profile",published_date__lte=timezone.now())
-    activity=Post.objects.filter(parent_title__contains="Activity",published_date__lte=timezone.now())
-    project=Post.objects.filter(parent_title__contains="Project",published_date__lte=timezone.now())
-    return render(request, 'blog/post_list.html', {"menu":menu, 'posts': posts,'profile':profile,"activity":activity,"project":project})
+    profile=Menu.objects.filter(parent_title__contains="Profile")
+    activity=Menu.objects.filter(parent_title__contains="Activity")
+    project=Menu.objects.filter(parent_title__contains="Project")
+    return render(request, 'blog/post_list.html', {'posts': posts,'profile':profile,"activity":activity,"project":project})
 
 def menu_detail(request,pk):
     menu=get_object_or_404(Menu,pk=pk)
-    menu= Menu.objects.filter(parent_title__contains="Activity")
-    return render(request,'blog/menu_detail.html',{'menu':menu})
+    post = get_object_or_404(Post, pk=pk)
+    profile=Menu.objects.filter(parent_title__contains="Profile")
+    activity=Menu.objects.filter(parent_title__contains="Activity")
+    project=Menu.objects.filter(parent_title__contains="Project")
+    return render(request,'blog/menu_detail.html',{'menu':menu,'post': post,'profile':profile,"activity":activity,"project":project})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)

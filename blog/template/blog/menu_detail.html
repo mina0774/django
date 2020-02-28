@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
 
-{% for post in menu.post.all %}
+{% for post in menu.posts.all %}
+  <h1>{{ post.title }}</h1>
 <div class="post">
   {% if post.published_date %}
   <div class="date">
@@ -10,7 +11,6 @@
   </div>
   {% endif %}
 
-  <h1>{{ post.title }}</h1>
 
   {% if user.is_authenticated %}
   <div align="right">
@@ -41,7 +41,8 @@
 {% empty %}
 <p style=" font-family: 'Tomorrow', sans-serif;">No comments here yet :(</p>
 {% endfor %}
-  {% endfor %}
+{% endfor %}
+
 
 
 {% endblock %}
