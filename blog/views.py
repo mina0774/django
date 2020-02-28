@@ -14,6 +14,11 @@ def post_list(request):
     project=Post.objects.filter(parent_title__contains="Project",published_date__lte=timezone.now())
     return render(request, 'blog/post_list.html', {"menu":menu, 'posts': posts,'profile':profile,"activity":activity,"project":project})
 
+def menu_detail(request,pk):
+    menu=get_object_or_404(Menu,pk=pk)
+    menu= Menu.objects.filter(parent_title__contains="Activity")
+    return render(request,'blog/menu_detail.html',{'menu':menu})
+
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     profile=Post.objects.filter(parent_title__contains="Profile",published_date__lte=timezone.now())
