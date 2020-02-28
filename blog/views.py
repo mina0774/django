@@ -23,16 +23,16 @@ def menu_detail(request,pk):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    profile=Post.objects.filter(parent_title__contains="Profile",published_date__lte=timezone.now())
-    activity=Post.objects.filter(parent_title__contains="Activity",published_date__lte=timezone.now())
-    project=Post.objects.filter(parent_title__contains="Project",published_date__lte=timezone.now())
+    profile=Menu.objects.filter(parent_title__contains="Profile")
+    activity=Menu.objects.filter(parent_title__contains="Activity")
+    project=Menu.objects.filter(parent_title__contains="Project")
     return render(request, 'blog/post_detail.html', {'post': post,'profile':profile,"activity":activity,"project":project})
 
 @login_required
 def post_new(request):
-    profile=Post.objects.filter(parent_title__contains="Profile",published_date__lte=timezone.now())
-    activity=Post.objects.filter(parent_title__contains="Activity",published_date__lte=timezone.now())
-    project=Post.objects.filter(parent_title__contains="Project",published_date__lte=timezone.now())
+    profile=Menu.objects.filter(parent_title__contains="Profile")
+    activity=Menu.objects.filter(parent_title__contains="Activity")
+    project=Menu.objects.filter(parent_title__contains="Project")
     if request.method == "POST":
         form=PostForm(request.POST)
         if form.is_valid():
@@ -47,9 +47,9 @@ def post_new(request):
 
 @login_required
 def post_edit(request, pk):
-    profile=Post.objects.filter(parent_title__contains="Profile",published_date__lte=timezone.now())
-    activity=Post.objects.filter(parent_title__contains="Activity",published_date__lte=timezone.now())
-    project=Post.objects.filter(parent_title__contains="Project",published_date__lte=timezone.now())
+    profile=Menu.objects.filter(parent_title__contains="Profile")
+    activity=Menu.objects.filter(parent_title__contains="Activity")
+    project=Menu.objects.filter(parent_title__contains="Project")
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
