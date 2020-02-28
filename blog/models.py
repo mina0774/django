@@ -43,6 +43,8 @@ class Comment(models.Model):
     text=models.TextField()
     created_date=models.DateTimeField(default=timezone.now)
     approved_comment=models.BooleanField(default=False)
+    orderno=models.IntegerField(default=0)
+    depth=models.IntegerField(default=0) #일반 댓글 1 대댓글 2
 
     def approve(self):
         self.approved_comment=True
