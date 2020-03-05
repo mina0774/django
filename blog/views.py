@@ -5,6 +5,8 @@ from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import math
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -15,11 +17,11 @@ def post_list(request):
 
 def menu_detail(request,pk):
     menu=get_object_or_404(Menu,pk=pk)
-    post = get_object_or_404(Post, pk=pk)
+    posts = Post.objects.all()
     profile=Menu.objects.filter(parent_title__contains="Profile")
     activity=Menu.objects.filter(parent_title__contains="Activity")
     project=Menu.objects.filter(parent_title__contains="Project")
-    return render(request,'blog/menu_detail.html',{'menu':menu,'post': post,'profile':profile,"activity":activity,"project":project})
+    return render(request,'blog/menu_detail.html',{'menu':menu,'profile':profile,"activity":activity,"project":project,'posts':posts})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
