@@ -1,0 +1,6 @@
+{% for post in posts %}
+<h4> {{ post.title }} </h4>
+<h4> {{ post.text }} </h4>
+{% empty %}
+검색 결과가 없습니다
+{% endfor %}

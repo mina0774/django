@@ -95,3 +95,9 @@ def comment_remove(request, pk):
     comment=get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail',pk=comment.post.pk)
+
+def result(request):
+    query=request.GET['query']
+    if query:
+        posts=posts.objects.filter(title__contains=query)
+        return render(request,'result.html',{'posts',posts})
