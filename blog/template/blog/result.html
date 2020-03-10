@@ -1,6 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
 {% for post in posts %}
-<h4> {{ post.title }} </h4>
-<h4> {{ post.text }} </h4>
+검색 결과는 다음과 같습니다.
+<br><div style="border:solid gray 2px; text-align:center;">위치: {{ post.parent_title }} - {{ post.index_title }}</div>
+<h2> {{ post.title }} </h2>
+<div>{{ post.text }}</div>
 {% empty %}
-검색 결과가 없습니다
+검색 결과가 없습니다.
 {% endfor %}
+
+{% endblock %}

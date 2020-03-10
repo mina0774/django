@@ -97,7 +97,10 @@ def comment_remove(request, pk):
     return redirect('post_detail',pk=comment.post.pk)
 
 def result(request):
-    query=request.GET['query']
+    profile=Menu.objects.filter(parent_title__contains="Profile")
+    activity=Menu.objects.filter(parent_title__contains="Activity")
+    project=Menu.objects.filter(parent_title__contains="Project")
+    query=request.GET.get('query')
     if query:
-        posts=posts.objects.filter(title__contains=query)
-        return render(request,'result.html',{'posts',posts})
+        posts=Post.objects.filter(title__contains=query)
+    return render(request,'blog/result.html',{'posts':posts,'profile':profile,"activity":activity,"project":project})
