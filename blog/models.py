@@ -43,6 +43,9 @@ class Comment(models.Model):
     text=models.TextField()
     created_date=models.DateTimeField(default=timezone.now)
     approved_comment=models.BooleanField(default=False)
+    depth=models.IntegerField(default=0)
+    groupno=models.IntegerField(default=0)
+    orderno=models.IntegerField(default=0)
 
     def approve(self):
         self.approved_comment=True
